@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" fill="none">
+<rect width="1600" height="1200" fill="#101012"/>
+<g stroke="#232326" stroke-width="1" opacity="0.55"><line x1="100" y1="0" x2="100" y2="1200"/><line x1="200" y1="0" x2="200" y2="1200"/><line x1="300" y1="0" x2="300" y2="1200"/><line x1="400" y1="0" x2="400" y2="1200"/><line x1="500" y1="0" x2="500" y2="1200"/><line x1="600" y1="0" x2="600" y2="1200"/><line x1="700" y1="0" x2="700" y2="1200"/><line x1="800" y1="0" x2="800" y2="1200"/><line x1="900" y1="0" x2="900" y2="1200"/><line x1="1000" y1="0" x2="1000" y2="1200"/><line x1="1100" y1="0" x2="1100" y2="1200"/><line x1="1200" y1="0" x2="1200" y2="1200"/><line x1="1300" y1="0" x2="1300" y2="1200"/><line x1="1400" y1="0" x2="1400" y2="1200"/><line x1="1500" y1="0" x2="1500" y2="1200"/><line x1="0" y1="100" x2="1600" y2="100"/><line x1="0" y1="200" x2="1600" y2="200"/><line x1="0" y1="300" x2="1600" y2="300"/><line x1="0" y1="400" x2="1600" y2="400"/><line x1="0" y1="500" x2="1600" y2="500"/><line x1="0" y1="600" x2="1600" y2="600"/><line x1="0" y1="700" x2="1600" y2="700"/><line x1="0" y1="800" x2="1600" y2="800"/><line x1="0" y1="900" x2="1600" y2="900"/><line x1="0" y1="1000" x2="1600" y2="1000"/><line x1="0" y1="1100" x2="1600" y2="1100"/></g>
+<rect x="100" y="90" width="1400" height="1020" rx="8" fill="#0A0A0A" stroke="#232326"/>
+<line x1="100" y1="200" x2="1500" y2="200" stroke="#232326"/>
+<g fill="#8E8E96" opacity="0.6">
+  <rect x="150" y="136" width="120" height="12" rx="6"/>
+  <rect x="300" y="136" width="80" height="12" rx="6" opacity="0.5"/>
+  <rect x="410" y="136" width="80" height="12" rx="6" opacity="0.5"/>
+</g>
+<g>
+  <rect x="150" y="250" width="290" height="130" rx="6" fill="#16161A" stroke="#232326"/>
+  <rect x="470" y="250" width="290" height="130" rx="6" fill="#16161A" stroke="#232326"/>
+  <rect x="790" y="250" width="290" height="130" rx="6" fill="#16161A" stroke="#232326"/>
+  <rect x="1110" y="250" width="290" height="130" rx="6" fill="#16161A" stroke="#232326"/>
+</g>
+<g fill="#FAFAFA" opacity="0.85">
+  <rect x="182" y="292" width="96" height="22" rx="4"/>
+  <rect x="502" y="292" width="120" height="22" rx="4"/>
+  <rect x="822" y="292" width="80" height="22" rx="4"/>
+  <rect x="1142" y="292" width="110" height="22" rx="4"/>
+</g>
+<path d="M150 700 L310 640 L470 668 L630 560 L790 596 L950 470 L1110 512 L1270 400 L1430 436" stroke="#FAFAFA" stroke-width="3" fill="none" stroke-linejoin="round"/>
+<path d="M150 700 L310 640 L470 668 L630 560 L790 596 L950 470 L1110 512 L1270 400 L1430 436 L1430 780 L150 780 Z" fill="#FAFAFA" opacity="0.06"/>
+<rect x="150" y="700" width="52" height="120" rx="3" fill="#8E8E96" opacity="0.35"/><rect x="246" y="630" width="52" height="190" rx="3" fill="#8E8E96" opacity="0.35"/><rect x="342" y="670" width="52" height="150" rx="3" fill="#8E8E96" opacity="0.35"/><rect x="438" y="580" width="52" height="240" rx="3" fill="#8E8E96" opacity="0.35"/><rect x="534" y="620" width="52" height="200" rx="3" fill="#8E8E96" opacity="0.35"/><rect x="630" y="535" width="52" height="285" rx="3" fill="#8E8E96" opacity="0.35"/><rect x="726" y="570" width="52" height="250" rx="3" fill="#8E8E96" opacity="0.35"/><rect x="822" y="490" width="52" height="330" rx="3" fill="#FAFAFA" opacity="0.9"/>
+<line x1="150" y1="900" x2="1450" y2="900" stroke="#232326" stroke-width="1"/><rect x="150" y="874" width="180" height="10" rx="5" fill="#8E8E96" opacity="0.5"/><rect x="1150" y="874" width="90" height="10" rx="5" fill="#8E8E96" opacity="0.35"/><rect x="1330" y="874" width="120" height="10" rx="5" fill="#8E8E96" opacity="0.35"/><line x1="150" y1="946" x2="1450" y2="946" stroke="#232326" stroke-width="1"/><rect x="150" y="920" width="237" height="10" rx="5" fill="#8E8E96" opacity="0.5"/><rect x="1150" y="920" width="90" height="10" rx="5" fill="#8E8E96" opacity="0.35"/><rect x="1330" y="920" width="120" height="10" rx="5" fill="#8E8E96" opacity="0.35"/><line x1="150" y1="992" x2="1450" y2="992" stroke="#232326" stroke-width="1"/><rect x="150" y="966" width="294" height="10" rx="5" fill="#8E8E96" opacity="0.5"/><rect x="1150" y="966" width="90" height="10" rx="5" fill="#8E8E96" opacity="0.35"/><rect x="1330" y="966" width="120" height="10" rx="5" fill="#8E8E96" opacity="0.35"/><line x1="150" y1="1038" x2="1450" y2="1038" stroke="#232326" stroke-width="1"/><rect x="150" y="1012" width="231" height="10" rx="5" fill="#8E8E96" opacity="0.5"/><rect x="1150" y="1012" width="90" height="10" rx="5" fill="#8E8E96" opacity="0.35"/><rect x="1330" y="1012" width="120" height="10" rx="5" fill="#8E8E96" opacity="0.35"/><line x1="150" y1="1084" x2="1450" y2="1084" stroke="#232326" stroke-width="1"/><rect x="150" y="1058" width="288" height="10" rx="5" fill="#8E8E96" opacity="0.5"/><rect x="1150" y="1058" width="90" height="10" rx="5" fill="#8E8E96" opacity="0.35"/><rect x="1330" y="1058" width="120" height="10" rx="5" fill="#8E8E96" opacity="0.35"/>
+<text x="48" y="1156" fill="#8E8E96" font-family="ui-monospace, monospace" font-size="26" letter-spacing="3.6">FINTECH DASHBOARD — CONCEPT</text><circle cx="34" cy="1148" r="4" fill="#8E8E96"/>
+</svg>

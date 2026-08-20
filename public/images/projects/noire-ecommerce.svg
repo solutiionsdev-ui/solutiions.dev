@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" fill="none">
+<rect width="1600" height="1200" fill="#EDEDEA"/>
+<rect x="0" y="0" width="900" height="1200" fill="#DEDEDA"/>
+<g stroke="#C9C9C4" stroke-width="1">
+  <line x1="900" y1="0" x2="900" y2="1200"/>
+  <line x1="900" y1="620" x2="1600" y2="620"/>
+</g>
+<g fill="#B6B6B0">
+  <path d="M300 1200c0-260 90-470 200-470s200 210 200 470Z"/>
+  <circle cx="500" cy="600" r="118"/>
+</g>
+<rect x="140" y="120" width="220" height="14" rx="7" fill="#8E8E88"/>
+<rect x="140" y="158" width="140" height="14" rx="7" fill="#A8A8A2" opacity="0.7"/>
+<g fill="#8E8E88">
+  <rect x="960" y="120" width="300" height="18" rx="9"/>
+  <rect x="960" y="164" width="180" height="14" rx="7" opacity="0.6"/>
+  <rect x="960" y="240" width="560" height="10" rx="5" opacity="0.45"/>
+  <rect x="960" y="272" width="520" height="10" rx="5" opacity="0.45"/>
+  <rect x="960" y="304" width="440" height="10" rx="5" opacity="0.45"/>
+</g>
+<g fill="none" stroke="#8E8E88" stroke-width="1.5">
+  <rect x="960" y="380" width="72" height="72" rx="4"/>
+  <rect x="1052" y="380" width="72" height="72" rx="4"/>
+  <rect x="1144" y="380" width="72" height="72" rx="4"/>
+</g>
+<rect x="960" y="500" width="240" height="56" rx="28" fill="#1A1A18"/>
+<g fill="#B6B6B0">
+  <rect x="960" y="680" width="250" height="330" rx="4"/>
+  <rect x="1250" y="680" width="250" height="330" rx="4"/>
+</g>
+<text x="48" y="1156" fill="#6E6E68" font-family="ui-monospace, monospace" font-size="26" letter-spacing="3.6">NOIRÉ ECOMMERCE — CONCEPT</text>
+<circle cx="34" cy="1148" r="4" fill="#6E6E68"/>
+</svg>

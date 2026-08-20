@@ -1,0 +1,386 @@
+@import 'tailwindcss';
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DESIGN TOKENS — brief §4.
+   These are the ONLY colors, sizes and durations permitted in the codebase.
+   Two sanctioned exceptions live at the bottom of this file: the 1.6s
+   scroll-rail pulse (§8.2) and the 28s tech marquee (§8.5).
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@theme {
+  /* ---- Surfaces (darkest → lightest) ---- */
+  --color-void: #000000; /* page surround, outside the content frame */
+  --color-surface: #0a0a0a; /* default section band */
+  --color-surface-2: #101012; /* cards, tech tiles */
+  --color-surface-3: #16161a; /* hover state of cards */
+
+  /* ---- Foreground ---- */
+  --color-fg: #fafafa; /* display type, headings        18.97:1 on surface */
+  --color-fg-secondary: #e4e4e7; /* strong body                   15.60:1 */
+  --color-fg-muted: #a1a1aa; /* body copy, descriptions        7.72:1 */
+  --color-fg-subtle: #8e8e96; /* smallest legible text          6.09:1 */
+  /* NEVER use #71717A or darker for text — 4.10:1 fails AA at these sizes. */
+
+  /* ---- Lines ---- */
+  --color-hairline: #232326; /* decorative dividers, card frames */
+  --color-hairline-lit: #2e2e33; /* hairline on hover */
+  --color-border: #71717a; /* INTERACTIVE boundaries (buttons, inputs)  4.10:1 ≥ 3:1 ✓ */
+
+  /* ---- Accent = inversion. There is no chromatic accent. ---- */
+  --color-accent: #ffffff;
+  --color-on-accent: #0a0a0a; /* 19.80:1 ✓ */
+  --color-ring: #ffffff;
+
+  /* ---- Feedback ---- */
+  --color-success: #34d399;
+  --color-danger: #f87171; /* lightened from #EF4444 for AA on near-black */
+
+  /* ---- Width axis (no Tailwind namespace — use font-stretch-(--stretch-*)) ---- */
+  --stretch-display: 78%; /* H1, H2 */
+  --stretch-h3: 85%; /* H3, wordmark */
+
+  /* ---- Type scale (see §5 for usage) ---- */
+  --text-label: 0.6875rem; /* 11px */
+  --text-label--line-height: 1.2;
+  --text-label--letter-spacing: 0.14em;
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.8125rem; /* 13px */
+  --text-base: 0.9375rem; /* 15px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-card: 1.0625rem; /* 17px  card + service titles */
+  --text-num: 1.75rem; /* 28px  section numerals 01–06 */
+  --text-h3: 2rem; /* 32px */
+  --text-h2: clamp(2.75rem, 6vw, 5rem);
+
+  /* DEVIATION FROM BRIEF §4: the brief specifies clamp(3rem, 9.2vw, 8.25rem).
+     That cannot coexist with §8.2's `col-span-6` hero text block. Measured at
+     1440px the column is 632px, but the authored line "DIGITAL EXPERIENCES"
+     needs 1218px at 132px type — so the headline wrapped to five visual lines,
+     contradicting §5's "line breaks are authored, not automatic".
+     Sized instead so the longest authored line fits its column at every width.
+     Below lg the hero is a single column, so the headline gets more room there;
+     the lg override lives just under this block. */
+  --text-h1: clamp(2.125rem, 9vw, 4.5rem);
+
+  /* ---- Leading & tracking, tokenised so components carry no raw values ---- */
+  --leading-display: 0.86; /* H1 — reads too tight alone, correct in composition */
+  --leading-h2: 0.88;
+  --leading-flat: 1;
+  --leading-title: 1.25;
+  --leading-body: 1.6;
+  --tracking-display: -0.02em;
+  --tracking-h3: -0.01em;
+  --tracking-title: 0.02em;
+  --tracking-button: 0.1em;
+  --tracking-nav: 0.12em;
+  --tracking-label: 0.14em;
+  --tracking-rail: 0.18em;
+
+  /* ---- Spacing (density 4/10 — marketing rhythm) ---- */
+  /* MUST be declared explicitly. Tailwind v4 builds every numeric spacing
+     utility as calc(var(--spacing) * n); declaring named --spacing-* keys
+     below replaces the namespace and drops this base value, which silently
+     zeroes p-4, gap-5, h-8, size-11 and every other numeric utility on the
+     site. Verified in-browser: without this line h-8 computes to 0px. */
+  --spacing: 0.25rem;
+
+  --spacing-frame: 0.75rem; /* inset of the content frame from viewport */
+  --spacing-gutter: 1.5rem; /* mobile horizontal padding */
+  --spacing-gutter-lg: 3.25rem;
+  --spacing-band: 5rem; /* section vertical padding, mobile */
+  --spacing-band-lg: 7rem; /* section vertical padding, desktop */
+  --spacing-nav: 4rem; /* sticky header height, mobile */
+  --spacing-nav-lg: 4.5rem; /* sticky header height, desktop */
+  --spacing-anchor: 5rem; /* scroll-margin-top = nav height + frame inset */
+  --spacing-anchor-lg: 6rem;
+  --spacing-shell: 90rem; /* 1440px max content width */
+  --spacing-rail: 3.5rem; /* 56px scroll rail */
+  --spacing-control: 2.5rem; /* 40px circular arrow button */
+
+  /* ---- Geometry ---- */
+  --radius-frame: 0.5rem;
+  --radius-card: 0.25rem;
+  --radius-pill: 9999px;
+
+  /* ---- Motion ---- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --dur-fast: 150ms; /* micro state changes */
+  --dur-base: 250ms; /* hover / focus transitions */
+  --dur-sheet: 300ms; /* mobile nav sheet */
+  --dur-cross: 400ms; /* poster → canvas cross-fade */
+  --dur-band: 500ms; /* band stagger reveal */
+  --dur-slow: 450ms; /* grid reveal */
+  --dur-reveal: 600ms; /* band + hero reveal */
+  --dur-draw: 900ms; /* process connector line */
+}
+
+/* At lg the hero splits into a 6/6 grid, so the headline's available width
+   roughly halves. The step down at the breakpoint is deliberate: it tracks a
+   real change in the space the type has to live in. See the note on --text-h1. */
+@media (min-width: 1024px) {
+  :root {
+    /* The 6-col text block measures roughly (100vw / 2 − 81px), and the longest
+       authored line sets type at ~9.23× its font-size. 1024px is the binding
+       case: a 424px column allows at most ~45.9px, i.e. 4.48vw. 4.4vw keeps a
+       margin, and the 4.125rem cap holds the line inside the column once the
+       shell stops growing at its 1440px max-width. */
+    --text-h1: clamp(2.5rem, 4.4vw, 4.125rem);
+  }
+}
+
+/* Font families MUST live in a separate `@theme inline` block. next/font applies
+   --font-archivo etc. via a className on <html>; a plain @theme resolves the var()
+   at :root where it does not yet exist, and every font utility silently falls back. */
+@theme inline {
+  --font-display: var(--font-archivo); /* Archivo variable: wght 100–900, wdth 62–125 */
+  --font-body: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BASE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-void);
+    color: var(--color-fg);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: var(--leading-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Every anchor target clears the sticky header.
+     WCAG 2.2 §2.4.11 "Focus Not Obscured" — a requirement, not a nicety. */
+  [id] {
+    scroll-margin-top: var(--spacing-anchor);
+  }
+
+  @media (min-width: 1024px) {
+    [id] {
+      scroll-margin-top: var(--spacing-anchor-lg);
+    }
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+
+  /* Never remove a focus ring without a replacement. */
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+
+  /* Headings inherit the display family; size/weight come from type-* roles. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TYPE ROLE UTILITIES — brief §5.
+   One utility per row of the type table, so no component re-states a
+   family/weight/width/size/case combination and they cannot drift apart.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@utility type-h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: var(--stretch-display);
+  font-size: var(--text-h1);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+}
+
+@utility type-h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: var(--stretch-display);
+  font-size: var(--text-h2);
+  line-height: var(--leading-h2);
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+@utility type-h2-secondary {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: var(--stretch-h3);
+  font-size: var(--text-h3);
+  line-height: var(--leading-flat);
+  letter-spacing: var(--tracking-h3);
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+@utility type-h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-stretch: var(--stretch-h3);
+  font-size: var(--text-h3);
+  line-height: var(--leading-flat);
+  letter-spacing: var(--tracking-h3);
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+@utility type-numeral {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-stretch: 100%;
+  font-size: var(--text-num);
+  line-height: var(--leading-flat);
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+@utility type-title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-card);
+  line-height: var(--leading-title);
+  letter-spacing: var(--tracking-title);
+  text-transform: uppercase;
+}
+
+@utility type-body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  text-wrap: pretty;
+}
+
+@utility type-meta {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+  text-wrap: pretty;
+}
+
+@utility type-nav {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: var(--text-xs);
+  line-height: var(--leading-flat);
+  letter-spacing: var(--tracking-nav);
+  text-transform: uppercase;
+}
+
+@utility type-label {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: var(--text-label);
+  line-height: 1.2;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+@utility type-button {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: var(--text-xs);
+  line-height: var(--leading-flat);
+  letter-spacing: var(--tracking-button);
+  text-transform: uppercase;
+}
+
+@utility type-wordmark {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: var(--stretch-h3);
+  font-size: var(--text-base);
+  line-height: var(--leading-flat);
+  letter-spacing: var(--tracking-title);
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LAYOUT UTILITIES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Horizontal rhythm shared by every band. Max width 1440px, centered. */
+@utility shell {
+  margin-inline: auto;
+  width: 100%;
+  max-width: var(--spacing-shell);
+  padding-inline: var(--spacing-gutter);
+
+  @media (min-width: 1024px) {
+    padding-inline: var(--spacing-gutter-lg);
+  }
+}
+
+/* ≥44×44px hit area on a control whose visual is smaller — pad with a
+   pseudo-element so the visual box is never inflated (§7). */
+@utility hit-area {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: max(100%, 44px);
+    height: max(100%, 44px);
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   AMBIENT LOOPS — the two sanctioned keyframe exceptions (§4).
+   Both are local to their component and both stop under reduced motion.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* §8.2 — a 12px lit segment travelling down the 56px scroll rail, 1.6s loop. */
+@keyframes rail-pulse {
+  0% {
+    transform: translateY(-0.75rem);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(var(--spacing-rail));
+    opacity: 0;
+  }
+}
+
+@utility animate-rail-pulse {
+  animation: rail-pulse 1.6s var(--ease-out-quart) infinite;
+}
+
+/* §8.5 — duplicated marquee track, translateX(-50%), 28s linear. */
+@keyframes marquee-track {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility animate-marquee {
+  animation: marquee-track var(--marquee-duration, 28s) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-rail-pulse,
+  .animate-marquee {
+    animation: none !important;
+  }
+}
