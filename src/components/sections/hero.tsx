@@ -17,19 +17,19 @@ export function Hero() {
     <section
       id="hero"
       aria-labelledby="hero-heading"
-      className="relative flex min-h-[88svh] items-center py-band lg:py-band-lg"
+      className="pt-band lg:pt-band-lg relative flex items-center pb-12 lg:pb-16"
     >
       <div className="shell grid w-full grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-6" data-hero-copy>
           <EyebrowLabel>WE ARE SOLUTIIONS.DEV</EyebrowLabel>
 
-          <h1 id="hero-heading" className="type-h1 mt-6 text-fg" data-split>
+          <h1 id="hero-heading" className="type-h1 text-fg mt-6" data-split>
             <span className="block">We build</span>
             <span className="block">Digital experiences</span>
             <span className="block">That matter.</span>
           </h1>
 
-          <p className="type-body mt-8 max-w-[38ch] text-fg-muted">
+          <p className="type-body text-fg-muted mt-8 max-w-[38ch]">
             A web development agency crafting high-performance websites, web applications and
             digital products.
           </p>
@@ -45,7 +45,7 @@ export function Hero() {
         </div>
 
         {/* Bleeds +8% right at lg and up so the object breaks the grid. */}
-        <div className="h-[320px] lg:col-span-6 lg:h-[min(38rem,60svh)] lg:-mr-[8%]">
+        <div className="h-[320px] lg:col-span-6 lg:-mr-[8%] lg:h-[min(38rem,60svh)]">
           <HeroObject />
         </div>
       </div>
@@ -54,7 +54,7 @@ export function Hero() {
       <div
         aria-hidden="true"
         data-scroll-rail
-        className="absolute bottom-band right-gutter-lg hidden flex-col items-center gap-4 transition-opacity duration-(--dur-base) ease-(--ease-out-quart) lg:flex"
+        className="bottom-band right-gutter-lg absolute hidden flex-col items-center gap-4 transition-opacity duration-(--dur-base) ease-(--ease-out-quart) lg:flex"
       >
         <span
           className="type-label text-fg-subtle"
@@ -62,8 +62,8 @@ export function Hero() {
         >
           SCROLL TO EXPLORE
         </span>
-        <span className="relative block h-rail w-px overflow-hidden bg-hairline">
-          <span className="animate-rail-pulse absolute inset-x-0 top-0 block h-3 bg-fg" />
+        <span className="h-rail bg-hairline relative block w-px overflow-hidden">
+          <span className="animate-rail-pulse bg-fg absolute inset-x-0 top-0 block h-3" />
         </span>
       </div>
     </section>

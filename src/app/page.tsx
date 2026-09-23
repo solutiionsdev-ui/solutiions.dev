@@ -4,15 +4,20 @@ import { Hero } from '@/components/sections/hero'
 import { Process } from '@/components/sections/process'
 import { SelectedWork } from '@/components/sections/selected-work'
 import { Services } from '@/components/sections/services'
-import { TechStack } from '@/components/sections/tech-stack'
-import { jsonLd, organizationSchema, websiteSchema } from '@/lib/structured-data'
+import {
+  jsonLd,
+  organizationSchema,
+  processSchema,
+  servicesSchema,
+  websiteSchema,
+} from '@/lib/structured-data'
 
 /**
  * Brief §8. Section order is fixed:
- * Hero → Selected Work → What We Do → Technologies → Process → About → CTA.
+ * Hero → Selected Work → What We Do → Process → About → CTA.
  *
  * This maps Portfolio Grid onto Scroll-Triggered Storytelling: the work grid is
- * the proof, services + tech are the capability, process is the reassurance,
+ * the proof, services are the capability, process is the reassurance,
  * and the CTA is the climax.
  */
 export default function HomePage() {
@@ -26,11 +31,18 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLd(websiteSchema()) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(servicesSchema()) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(processSchema()) }}
+      />
 
       <Hero />
       <SelectedWork />
       <Services />
-      <TechStack />
       <Process />
       <About />
       <CtaBand />

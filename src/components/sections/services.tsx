@@ -1,7 +1,7 @@
 import { Band } from '@/components/ui/band'
 import { Reveal } from '@/components/ui/reveal'
 import { ServiceItem } from '@/components/ui/service-item'
-import { services } from '@/content/services'
+import { services, servicesHeading } from '@/content/services'
 
 /**
  * Brief §8.4. Vertical hairlines between columns in a row, horizontal ones
@@ -10,11 +10,14 @@ import { services } from '@/content/services'
  */
 export function Services() {
   return (
-    <Band id="services" label="WHAT WE DO">
+    <Band id="services" label="WHAT WE DO" headingId="services-heading">
+      <h2 id="services-heading" className="type-h2-secondary text-fg mb-12 max-w-[24ch] lg:mb-16">
+        {servicesHeading}
+      </h2>
       <Reveal
         as="ul"
         stagger
-        className="grid grid-cols-1 divide-y divide-hairline sm:grid-cols-2 sm:divide-x md:grid-cols-3 xl:grid-cols-6 xl:divide-y-0"
+        className="divide-hairline grid grid-cols-1 divide-y sm:grid-cols-2 sm:divide-x md:grid-cols-3 xl:grid-cols-6 xl:divide-y-0"
       >
         {services.map((service) => (
           <ServiceItem

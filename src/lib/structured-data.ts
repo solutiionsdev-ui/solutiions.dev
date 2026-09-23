@@ -1,8 +1,12 @@
+import { processHeading, processSteps } from '@/content/process'
 import { projects } from '@/content/projects'
+import { services } from '@/content/services'
 import { site, socialLinks } from '@/content/site'
 import type { Project } from '@/content/types'
 
 /** Brief §15. JSON-LD, never microdata. */
+
+const areaServed = { '@type': 'Place', name: 'Middle East and North Africa (MENA)' }
 
 export function organizationSchema() {
   return {
@@ -12,6 +16,7 @@ export function organizationSchema() {
     url: site.url,
     email: site.email,
     description: site.description,
+    areaServed,
     sameAs: socialLinks.map((link) => link.href),
   }
 }
@@ -54,6 +59,41 @@ export function collectionSchema() {
       '@type': 'CreativeWork',
       name: project.title,
       url: `${site.url}${project.href}`,
+    })),
+  }
+}
+
+/** The six services, so search engines can read them as offerings. */
+export function servicesSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Services',
+    itemListElement: services.map((service) => ({
+      '@type': 'ListItem',
+      position: service.index,
+      item: {
+        '@type': 'Service',
+        name: service.title,
+        description: service.description,
+        serviceType: service.title,
+        areaServed,
+        provider: { '@type': 'Organization', name: site.name, url: site.url },
+      },
+    })),
+  }
+}
+
+export function processSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: processHeading,
+    step: processSteps.map((step) => ({
+      '@type': 'HowToStep',
+      position: step.index,
+      name: step.title,
+      text: step.description,
     })),
   }
 }

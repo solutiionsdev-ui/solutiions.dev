@@ -10,7 +10,7 @@ export const site = {
   email: 'hello@solutiions.dev',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://solutiions.dev',
   description:
-    'Solutiions.dev is a web development agency crafting high-performance websites, web applications and digital products.',
+    'Solutiions.dev is a web development and AI agency serving the Middle East, crafting high-performance websites, web apps, AI systems and e-commerce stores.',
   tagline: 'We build digital experiences that matter.',
   locale: 'en',
 } as const
@@ -22,15 +22,15 @@ export const site = {
  */
 export const navItems: NavItem[] = [
   { label: 'WORK', href: '/#work' },
+  { label: 'PORTFOLIO', href: '/portfolio' },
   { label: 'SERVICES', href: '/#services' },
   { label: 'ABOUT', href: '/#about' },
-  { label: 'TECH', href: '/#tech' },
   { label: 'PROCESS', href: '/#process' },
   { label: 'CONTACT', href: '/contact' },
 ]
 
 /** Section ids observed by the active-nav ScrollTrigger (§8.1). */
-export const navSectionIds = ['work', 'services', 'about', 'tech', 'process'] as const
+export const navSectionIds = ['work', 'services', 'about', 'process'] as const
 
 export const socialLinks: SocialLink[] = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/company/solutiions-dev' },

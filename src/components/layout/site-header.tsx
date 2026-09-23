@@ -78,18 +78,18 @@ export function SiteHeader() {
     <>
       <header
         className={cn(
-          'sticky top-0 z-50 sm:top-frame',
+          'sm:top-frame sticky top-0 z-50',
           // White header: flip the colour tokens locally so every child (wordmark,
           // nav, button, menu icon) renders dark on white.
-          'bg-white [--color-fg:#0a0a0a] [--color-fg-subtle:#52525b] [--color-border:#a1a1aa] [--color-ring:#0a0a0a] [--color-hairline:#e4e4e7]',
+          'bg-white [--color-border:#a1a1aa] [--color-fg-subtle:#52525b] [--color-fg:#0a0a0a] [--color-hairline:#e4e4e7] [--color-ring:#0a0a0a]',
           'border-b transition-[border-color] duration-(--dur-base) ease-(--ease-out-quart)',
           scrolled ? 'border-hairline' : 'border-transparent',
         )}
       >
-        <div className="shell flex h-nav items-center justify-between gap-6 lg:h-nav-lg">
+        <div className="shell h-nav lg:h-nav-lg flex items-center justify-between gap-6">
           <Link
             href="/"
-            className="type-wordmark cursor-pointer text-fg transition-opacity duration-(--dur-base) ease-(--ease-out-quart) hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            className="type-wordmark text-fg focus-visible:outline-ring cursor-pointer transition-opacity duration-(--dur-base) ease-(--ease-out-quart) hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2"
           >
             {site.wordmark}
           </Link>
@@ -98,14 +98,14 @@ export function SiteHeader() {
             <ul className="flex items-center gap-9">
               {navItems.map((item) => {
                 const id = item.href.split('#')[1] ?? null
-                const isActive = Boolean(id) && id === activeId
+                const isActive = (Boolean(id) && id === activeId) || item.href === pathname
                 return (
                   <li key={item.href}>
                     <Link
                       href={item.href}
                       aria-current={isActive ? 'true' : undefined}
                       className={cn(
-                        'type-nav cursor-pointer transition-colors duration-(--dur-base) ease-(--ease-out-quart) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring',
+                        'type-nav focus-visible:outline-ring cursor-pointer transition-colors duration-(--dur-base) ease-(--ease-out-quart) focus-visible:outline-2 focus-visible:outline-offset-2',
                         isActive ? 'text-fg' : 'text-fg-subtle hover:text-fg',
                       )}
                     >
@@ -129,7 +129,7 @@ export function SiteHeader() {
             onClick={() => setMenuOpen(true)}
             aria-expanded={menuOpen}
             aria-label="Open navigation"
-            className="-mr-2 flex size-11 cursor-pointer items-center justify-center text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring lg:hidden"
+            className="text-fg focus-visible:outline-ring -mr-2 flex size-11 cursor-pointer items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 lg:hidden"
           >
             <Menu aria-hidden="true" strokeWidth={1.5} className="size-5" />
           </button>
