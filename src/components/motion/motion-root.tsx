@@ -165,17 +165,13 @@ export default function MotionRoot() {
             const section = line.closest('section') ?? line
             const vertical = line.classList.contains('lg:hidden')
 
-            gsap.fromTo(
-              line,
-              vertical ? { scaleY: 0 } : { scaleX: 0 },
-              {
-                ...(vertical ? { scaleY: 1 } : { scaleX: 1 }),
-                transformOrigin: vertical ? 'center top' : 'left center',
-                duration: 0.9,
-                ease: 'expo.out',
-                scrollTrigger: { trigger: section, start: 'top 70%' },
-              },
-            )
+            gsap.fromTo(line, vertical ? { scaleY: 0 } : { scaleX: 0 }, {
+              ...(vertical ? { scaleY: 1 } : { scaleX: 1 }),
+              transformOrigin: vertical ? 'center top' : 'left center',
+              duration: 0.9,
+              ease: 'expo.out',
+              scrollTrigger: { trigger: section, start: 'top 70%' },
+            })
           })
 
           gsap.utils.toArray<HTMLElement>('[data-draw-node]').forEach((node, index) => {
@@ -191,7 +187,7 @@ export default function MotionRoot() {
             })
           })
 
-          /* ── Hero pin — the ONLY pinned section on the page (§9.3) ──────── */
+          /* ── Hero parallax (§9.3) ─────────────────────────────────────────── */
           const hero = document.querySelector<HTMLElement>('#hero')
           const rail = document.querySelector<HTMLElement>('[data-scroll-rail]')
 
@@ -203,9 +199,9 @@ export default function MotionRoot() {
               scrollTrigger: {
                 trigger: hero,
                 start: 'top top',
-                end: '+=120%',
-                pin: true,
-                pinSpacing: true,
+                end: 'bottom top',
+                // No pin: pinning froze the page and left blank scroll space
+                // under the hero. The parallax now plays as it scrolls away.
                 scrub: 1,
                 // will-change lives only here, and only while the timeline runs.
                 onEnter: () => hero.style.setProperty('will-change', 'transform'),

@@ -2,6 +2,7 @@
 
 import { X } from 'lucide-react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 
 import { Button } from '@/components/ui/button'
@@ -24,6 +25,7 @@ export function MobileNav({
   activeId: string | null
 }) {
   const sheetRef = useRef<HTMLDivElement>(null)
+  const pathname = usePathname()
 
   // Lock body scroll while the sheet is open, compensating for the scrollbar
   // so the page behind does not shift.
@@ -93,33 +95,33 @@ export function MobileNav({
       role="dialog"
       aria-modal="true"
       aria-label="Site navigation"
-      className="fixed inset-0 z-90 flex flex-col bg-surface lg:hidden"
+      className="bg-surface fixed inset-0 z-90 flex flex-col lg:hidden"
     >
-      <div className="flex h-nav shrink-0 items-center justify-between px-gutter">
+      <div className="h-nav px-gutter flex shrink-0 items-center justify-between">
         <span className="type-wordmark text-fg">{site.wordmark}</span>
         <button
           type="button"
           onClick={onClose}
           aria-label="Close navigation"
-          className="hit-area -mr-2 flex size-11 cursor-pointer items-center justify-center text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          className="hit-area text-fg focus-visible:outline-ring -mr-2 flex size-11 cursor-pointer items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2"
         >
           <X aria-hidden="true" strokeWidth={1.5} className="size-5" />
         </button>
       </div>
 
-      <nav aria-label="Primary" className="flex-1 overflow-y-auto px-gutter pb-gutter">
+      <nav aria-label="Primary" className="px-gutter pb-gutter flex-1 overflow-y-auto">
         <ul className="flex flex-col">
           {navItems.map((item) => {
             const id = item.href.split('#')[1] ?? null
-            const isActive = Boolean(id) && id === activeId
+            const isActive = (Boolean(id) && id === activeId) || item.href === pathname
             return (
-              <li key={item.href} className="border-b border-hairline">
+              <li key={item.href} className="border-hairline border-b">
                 <Link
                   href={item.href}
                   onClick={onClose}
                   aria-current={isActive ? 'true' : undefined}
                   className={cn(
-                    'type-nav flex h-12 cursor-pointer items-center transition-colors duration-(--dur-base) ease-(--ease-out-quart) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring',
+                    'type-nav focus-visible:outline-ring flex h-12 cursor-pointer items-center transition-colors duration-(--dur-base) ease-(--ease-out-quart) focus-visible:outline-2 focus-visible:outline-offset-2',
                     isActive ? 'text-fg' : 'text-fg-subtle hover:text-fg',
                   )}
                 >
