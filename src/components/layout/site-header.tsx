@@ -79,10 +79,11 @@ export function SiteHeader() {
       <header
         className={cn(
           'sticky top-0 z-50 sm:top-frame',
-          'border-b transition-[background-color,border-color,backdrop-filter] duration-(--dur-base) ease-(--ease-out-quart)',
-          scrolled
-            ? 'border-hairline bg-surface/80 backdrop-blur-xl'
-            : 'border-transparent bg-transparent',
+          // White header: flip the colour tokens locally so every child (wordmark,
+          // nav, button, menu icon) renders dark on white.
+          'bg-white [--color-fg:#0a0a0a] [--color-fg-subtle:#52525b] [--color-border:#a1a1aa] [--color-ring:#0a0a0a] [--color-hairline:#e4e4e7]',
+          'border-b transition-[border-color] duration-(--dur-base) ease-(--ease-out-quart)',
+          scrolled ? 'border-hairline' : 'border-transparent',
         )}
       >
         <div className="shell flex h-nav items-center justify-between gap-6 lg:h-nav-lg">
