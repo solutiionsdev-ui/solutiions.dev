@@ -80,6 +80,44 @@ const liveWork: PortfolioItem[] = [
     liveUrl: 'https://driver-website-sage.vercel.app/',
     concept: true,
   },
+  {
+    slug: 'clothing-store',
+    title: 'CLOTHING STORE',
+    type: 'E-commerce',
+    industry: 'Fashion / Retail',
+    cover: {
+      src: '/images/portfolio/clothing-store.png',
+      alt: 'Dark technical-apparel storefront with an oversized pixel-grid wordmark and a Shop Now button.',
+      width: 1600,
+      height: 1000,
+    },
+    gallery: [],
+    description:
+      'An online store for technical jackets built for changing weather — weather-resistant shells, thermal insulation and an oversized fit, with a terminal-inspired, motion-led storefront.',
+    tags: ['Next.js', 'E-commerce', 'Motion design'],
+    href: 'https://clothing-store-mu-topaz.vercel.app/',
+    liveUrl: 'https://clothing-store-mu-topaz.vercel.app/',
+    concept: true,
+  },
+  {
+    slug: 'coffee-shop',
+    title: 'COFFEE SHOP',
+    type: 'Website',
+    industry: 'Hospitality',
+    cover: {
+      src: '/images/portfolio/coffee-shop.png',
+      alt: 'Brewns coffee house site loading screen: a large brew counter beside an illustrated cup filling with coffee.',
+      width: 1600,
+      height: 1000,
+    },
+    gallery: [],
+    description:
+      'A website for a specialty coffee house with three locations — menu, carefully sourced beans and order-ahead, wrapped in a playful brewing intro.',
+    tags: ['Next.js', 'Order ahead', 'Motion design'],
+    href: 'https://coffee-shop-website-amber-xi.vercel.app/',
+    liveUrl: 'https://coffee-shop-website-amber-xi.vercel.app/',
+    concept: true,
+  },
 ]
 
 const caseStudies: PortfolioItem[] = projects.map((project) => ({
