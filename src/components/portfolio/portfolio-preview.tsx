@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
+import { LivePreview } from '@/components/portfolio/live-preview'
 import { PortfolioGuide } from '@/components/portfolio/portfolio-guide'
 import { Button } from '@/components/ui/button'
 import { portfolio, type PortfolioItem } from '@/content/portfolio'
@@ -131,37 +132,43 @@ export function PortfolioPreview({
         >
           {/* Fixed-height window: scroll inside it to see the whole site, so
               "More like this" and the FAQs sit right underneath. */}
-          <div
-            ref={mediaRef}
-            tabIndex={0}
-            aria-label="Project preview, scrollable"
-            className="bg-surface-2 border-hairline aspect-[16/10] shrink-0 overflow-y-auto border-b outline-none lg:aspect-auto lg:h-[52vh]"
-          >
-            {item.video ? (
-              <video
-                src={item.video}
-                poster={item.cover.src}
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="block w-full"
-              />
-            ) : (
-              [item.cover, ...item.gallery].map((image, index) => (
-                <Image
-                  key={image.src}
-                  src={image.src}
-                  alt={image.alt}
-                  width={image.width}
-                  height={image.height}
-                  sizes="(min-width: 1024px) 60vw, 100vw"
-                  priority={index === 0}
-                  className="block h-auto w-full"
+          {item.liveUrl ? (
+            <div className="border-hairline h-[70vh] shrink-0 border-b lg:h-[72vh]">
+              <LivePreview url={item.liveUrl} title={item.title} />
+            </div>
+          ) : (
+            <div
+              ref={mediaRef}
+              tabIndex={0}
+              aria-label="Project preview, scrollable"
+              className="bg-surface-2 border-hairline aspect-[16/10] shrink-0 overflow-y-auto border-b outline-none lg:aspect-auto lg:h-[52vh]"
+            >
+              {item.video ? (
+                <video
+                  src={item.video}
+                  poster={item.cover.src}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="block w-full"
                 />
-              ))
-            )}
-          </div>
+              ) : (
+                [item.cover, ...item.gallery].map((image, index) => (
+                  <Image
+                    key={image.src}
+                    src={image.src}
+                    alt={image.alt}
+                    width={image.width}
+                    height={image.height}
+                    sizes="(min-width: 1024px) 60vw, 100vw"
+                    priority={index === 0}
+                    className="block h-auto w-full"
+                  />
+                ))
+              )}
+            </div>
+          )}
 
           <PortfolioGuide type={item.type} className="hidden lg:block" />
 
@@ -256,9 +263,11 @@ export function PortfolioPreview({
                 LIVE PREVIEW SOON
               </span>
             )}
-            <Button href={item.href} variant="outline" size="md">
-              VIEW CASE STUDY
-            </Button>
+            {item.href !== item.liveUrl ? (
+              <Button href={item.href} variant="outline" size="md">
+                VIEW CASE STUDY
+              </Button>
+            ) : null}
           </div>
 
           <div className="border-hairline mt-8 flex items-center gap-3 border-t pt-6">

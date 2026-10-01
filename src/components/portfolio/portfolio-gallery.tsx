@@ -1,9 +1,9 @@
 'use client'
 
-import Image from 'next/image'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { PortfolioPreview } from '@/components/portfolio/portfolio-preview'
+import { PortfolioThumb } from '@/components/portfolio/portfolio-thumb'
 
 import { portfolio, portfolioTypes, type PortfolioType } from '@/content/portfolio'
 import { cn } from '@/lib/cn'
@@ -150,14 +150,16 @@ export function PortfolioGallery() {
                 className="group focus-visible:outline-ring block cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4"
               >
                 <div className="rounded-frame border-hairline bg-surface-2 group-hover:border-hairline-lit relative aspect-[16/10] overflow-hidden border transition-colors duration-(--dur-base) ease-(--ease-out-quart)">
-                  <Image
-                    src={item.cover.src}
-                    alt={item.cover.alt}
-                    width={item.cover.width}
-                    height={item.cover.height}
+                  <PortfolioThumb
+                    item={item}
                     sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    className="size-full object-cover transition-transform duration-(--dur-slow,600ms) ease-(--ease-out-quart) group-hover:scale-[1.04]"
+                    imageClassName="transition-transform duration-(--dur-slow,600ms) ease-(--ease-out-quart) group-hover:scale-[1.04]"
                   />
+                  {item.liveUrl ? (
+                    <span className="type-label rounded-pill bg-void/60 text-fg absolute right-3 bottom-3 inline-flex h-6 items-center gap-1.5 px-2.5 opacity-0 backdrop-blur-sm transition-opacity duration-(--dur-base) group-hover:opacity-100 group-focus-visible:opacity-100">
+                      Open live preview
+                    </span>
+                  ) : null}
                   {item.isNew ? (
                     <span className="type-label rounded-pill bg-void/60 text-fg absolute top-3 left-3 inline-flex h-6 items-center gap-1.5 px-2.5 backdrop-blur-sm">
                       <span aria-hidden="true" className="rounded-pill bg-danger size-1.5" />

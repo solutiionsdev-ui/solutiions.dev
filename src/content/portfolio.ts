@@ -55,7 +55,34 @@ const industryBySlug: Record<string, string> = {
   'kiln-studio': 'Agency / Studio',
 }
 
-export const portfolio: PortfolioItem[] = projects.map((project, index) => ({
+/**
+ * Work with a public URL. Cards show a scaled-down live view of `liveUrl`
+ * (or `video`, if set) and the preview opens the running site. `href` points
+ * at the live site until a case study page exists.
+ */
+const liveWork: PortfolioItem[] = [
+  {
+    slug: 'driver-website',
+    title: 'DRIVER SITE',
+    type: 'Website',
+    industry: 'Sports',
+    cover: {
+      src: '/images/portfolio/driver-website.png',
+      alt: 'Personal brand site for a racing driver: oversized name, next race card and season stats on a light contour background.',
+      width: 1600,
+      height: 1000,
+    },
+    gallery: [],
+    description:
+      'A personal branding site for a professional racing driver — season stats, race calendar, journal and store, with motion-led storytelling from karting to F1.',
+    tags: ['Next.js', 'Motion design', 'Personal branding'],
+    href: 'https://driver-website-sage.vercel.app/',
+    liveUrl: 'https://driver-website-sage.vercel.app/',
+    concept: true,
+  },
+]
+
+const caseStudies: PortfolioItem[] = projects.map((project) => ({
   slug: project.slug,
   title: project.title,
   type: typeBySlug[project.slug] ?? 'Website',
@@ -66,7 +93,8 @@ export const portfolio: PortfolioItem[] = projects.map((project, index) => ({
   tags: project.role,
   href: project.href,
   concept: project.concept,
-  isNew: index < 2,
 }))
+
+export const portfolio: PortfolioItem[] = [...liveWork, ...caseStudies]
 
 export const portfolioTypes: PortfolioType[] = ['Website', 'Web App', 'E-commerce', 'AI System']
